@@ -27,6 +27,7 @@ Managing Roles and content visualization through Backbone and Mustache.
   auth.set(roles);                        // Apply the Roles
 ```
 
+#### Run through Mustache:
 After initializing the plugin, the Roles will be automatically hooked up with the Mustache object:
 ```javascript
   var template = "{{#_auth_.title:view}} {{title}} {{/_auth_.title:view}} \
@@ -35,6 +36,7 @@ After initializing the plugin, the Roles will be automatically hooked up with th
   this.$el.html(Mustache.render( template, {title: 'Hello World!'}));     // Render
 ```
 
+#### Access Roles on Javascript:
 You can also access the Roles through Javascript variables:
 ```javascript
   console.log(auth.get('title:view'));    // true
