@@ -25,6 +25,16 @@ You can call the `_auth_.authorization1` property to check current authorization
   {{^_auth_.title}}Not authorized to see title{{/_auth_.title}}
 ```
 
+### Instalation
+
+Requirements: Backbone and Mustache
+
+With script Tag `<script type="text/javascript" src="https://github.com/Cloudoki/backbone-mustache-auth/blob/master/index.js"></script>`
+
+With Bower `bower install git://github.com/Cloudoki/backbone-mustache-auth.git`
+
+With npm `npm install github:Cloudoki/backbone-mustache-auth`
+
 ### Example Usage
 
 ```javascript
