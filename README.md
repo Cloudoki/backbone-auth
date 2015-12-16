@@ -1,66 +1,46 @@
 # Backbone-Mustache-Auth
 
-Manage content view authorization with Backbone and Mustache
+Manage Roles and content visualization through Backbone and Mustache.
 
-Provide authorizations as an Array of strings
+## Features
+- Visualizing specific elements in Mustache templates according to available Roles;
+- Global access to the Roles through Javacript variables;
+- Possibility to request the Roles from an external API;
 
-```json
-["authorization1", "authorization2", "title"]
-```
+## Requirements
+- [backbonejs](http://backbonejs.org/)
+- [mustache.js](https://github.com/janl/mustache.js/)
 
-or already parsed as an object
+## Instalation
+**Script Tag:** `<script type="text/javascript" src="https://github.com/Cloudoki/backbone-mustache-auth/blob/master/index.js"></script>`
+**Bower:** `bower install git://github.com/Cloudoki/backbone-mustache-auth.git`
+**npm:** `npm install github:Cloudoki/backbone-mustache-auth`
 
-```json
-{
-    "authorization1": true,
-    "authorization2": true,
-    "title": true
-}
-```
-
-You can call the `_auth_.authorization1` property to check current authorization
-
-```html
-  {{#_auth_.title}}{{title}}{{/_auth_.title}}
-  {{^_auth_.title}}Not authorized to see title{{/_auth_.title}}
-```
-
-### Instalation
-
-Requirements: Backbone and Mustache
-
-With script Tag `<script type="text/javascript" src="https://github.com/Cloudoki/backbone-mustache-auth/blob/master/index.js"></script>`
-
-With Bower `bower install git://github.com/Cloudoki/backbone-mustache-auth.git`
-
-With npm `npm install github:Cloudoki/backbone-mustache-auth`
-
-### Example Usage
-
+## Usage
+#### Initialize the plugin:
 ```javascript
-  var authorizations = ['title'];
+  // Define your Roles in an array or json format
+  var roles = ['title:view'];             // Roles array
+  // var roles = {"title:view": true}     // Roles json
 
-  var auth = new Auth();
-
-  auth.set(authorizations);
-
-  console.log(auth.get('title')); // true
-  console.log(auth.get('name')); // undefined
-
-  var GreetingView = Backbone.View.extend({
-    el: document.getElementById('title'),
-    render: function() {
-      this.$el.html(Mustache.render('{{#_auth_.title}}{{title}}{{/_auth_.title}}' +
-        '{{^_auth_.title}}Not authorized to see title{{/_auth_.title}}', {
-        title: 'Hello World!'
-      }));
-
-      return this;
-    }
-  });
-
-  new GreetingView().render();
+  var auth = new Auth();                  // Initialize the authorizations plugin
+  auth.set(roles);                        // Apply the Roles
 ```
+
+After initializing the plugin, the Roles will be automatically hooked up with the Mustache object:
+```javascript
+  var template = "{{#_auth_.title:view}} {{title}} {{/_auth_.title:view}} \
+                  {{^_auth_.title:view}} Not authorized to see title {{/_auth_.title:view}}";
+
+  this.$el.html(Mustache.render( template, {title: 'Hello World!'}));     // Render
+```
+
+You can also access the Roles through Javascript variables:
+```javascript
+  console.log(auth.get('title:view'));    // true
+  console.log(auth.get('name:update'));   // undefined
+```
+
 
 ### Fetch authorizations from resource API
 
