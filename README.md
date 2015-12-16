@@ -1,6 +1,6 @@
 # Backbone-Mustache-Auth
 
-Manage Roles and content visualization through Backbone and Mustache.
+Managing Roles and content visualization through Backbone and Mustache.
 
 ## Features
 - Visualizing specific elements in Mustache templates according to available Roles;
@@ -12,9 +12,9 @@ Manage Roles and content visualization through Backbone and Mustache.
 - [mustache.js](https://github.com/janl/mustache.js/)
 
 ## Instalation
-**Script Tag:** `<script type="text/javascript" src="https://github.com/Cloudoki/backbone-mustache-auth/blob/master/index.js"></script>`
-**Bower:** `bower install git://github.com/Cloudoki/backbone-mustache-auth.git`
-**npm:** `npm install github:Cloudoki/backbone-mustache-auth`
+- **Script Tag:** `<script type="text/javascript" src="https://github.com/Cloudoki/backbone-mustache-auth/blob/master/index.js"></script>`
+- **Bower:** `bower install git://github.com/Cloudoki/backbone-mustache-auth.git`
+- **npm:** `npm install github:Cloudoki/backbone-mustache-auth`
 
 ## Usage
 #### Initialize the plugin:
