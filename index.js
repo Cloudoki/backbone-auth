@@ -18,7 +18,7 @@
    * Authorization Backbone Model
    */
   return Backbone.Model.extend({
-    // Method called when i18n model is initialized with new constructor
+    // Method called when authorization model is initialized with new constructor
     initialize: function() {
       var self = this;
 
