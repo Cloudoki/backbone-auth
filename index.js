@@ -28,8 +28,14 @@
       //monkey-patch Mustache render to include on all views the
       //  authorizations (_auth_)
       Mustache.render = function(template, view) {
-        view._auth_ = self.attributes;
-        return defaultRender.apply(this, arguments);
+        if (!view) {
+          return defaultRender.apply(this, [template, {
+            _auth_: self.attributes
+          }]);
+        } else {
+          view._auth_ = self.attributes;
+          return defaultRender.apply(this, arguments);
+        }
       };
     },
     /**
