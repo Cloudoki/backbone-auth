@@ -1,55 +1,57 @@
-(function(root, main) {
+(function (root, factory) {
   // AMD
   if (typeof define === 'function' && define.amd) {
-    define(['backbone', 'mustache'],
-      function(Backbone, Mustache) {
-        return main(Backbone, Mustache);
-      });
+    define(['backbone', 'mustache'], factory);
     // CommonJS
-  } else if (typeof exports !== 'undefined' && typeof require !== 'undefined') {
-    module.exports = main(require('backbone'), require('mustache'));
+  } else if (typeof module === 'object' && module.exports && require) {
+    module.exports = factory(require('backbone'), require('mustache'));
     // Globals
   } else {
-    root.Auth = main(root.Backbone, root.Mustache);
+    /* eslint-disable no-param-reassign */
+    root.Auth = factory(root.Backbone, root.Mustache);
+    /* eslint-enable no-param-reassign */
   }
-})(this, function(Backbone, Mustache) {
+})(this, function (Backbone, Mustache) {
   'use strict';
+
   /**
    * Authorization Backbone Model
    */
   return Backbone.Model.extend({
     // Method called when authorization model is initialized with new constructor
-    initialize: function() {
+    initialize: function () {
       var self = this;
 
       // define default mustache render at initialization
       var defaultRender = Mustache.render;
 
-      //monkey-patch Mustache render to include on all views the
+      // Monkey-patch Mustache render to include on all views the
       //  authorizations (_auth_)
-      Mustache.render = function(template, view) {
+      /* eslint-disable no-param-reassign */
+      Mustache.render = function (template, view) {
         if (!view) {
           return defaultRender.apply(this, [template, {
             _auth_: self.attributes
           }]);
-        } else {
-          view._auth_ = self.attributes;
-          return defaultRender.apply(this, arguments);
         }
+        view._auth_ = self.attributes;
+        return defaultRender.apply(this, arguments);
       };
+      /* eslint-enable no-param-reassign */
     },
     /**
      * Overides default set of attributes to allow for setting an array of
      * authorizations (strings) that will be parsed to an object of
      * authorizations as key and true for value
      */
-    set: function() {
+    set: function () {
       var args = Array.prototype.slice.call(arguments);
+      var data;
       // checks if attributes are an array
       if (args[0] instanceof Array) {
-        var data = {};
+        data = {};
         // build object from array
-        args[0].forEach(function(key) {
+        args[0].forEach(function (key) {
           data[key] = true;
         });
         // overwrite attributes
