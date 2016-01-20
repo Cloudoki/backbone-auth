@@ -13,7 +13,7 @@ Roles;
 - [mustache.js](https://github.com/janl/mustache.js/)
 
 ## Instalation
-- **Script Tag:** `<script type="text/javascript" src="https://github.com/Cloudoki/backbone-auth/blob/master/index.js"></script>`
+- **Script Tag:** `<script type="text/javascript" src="http://cdn.rawgit.com/Cloudoki/backbone-auth/master/index.js"></script>`
 - **Bower:** `bower install git://github.com/Cloudoki/backbone-auth.git`
 - **npm:** `npm install github:Cloudoki/backbone-auth`
 
