@@ -46,10 +46,11 @@
      */
     set: function () {
       var args = Array.prototype.slice.call(arguments);
-      var data;
       // checks if attributes are an array
       if (args[0] instanceof Array) {
-        data = {};
+        // clean up old authorizations
+        this.clear();
+        var data = {};
         // build object from array
         args[0].forEach(function (key) {
           data[key] = true;

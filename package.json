@@ -1,6 +1,6 @@
 {
   "name": "backbone-mustache-auth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Manage content view authorization with Backbone and Mustache",
   "main": "index.js",
   "directories": {

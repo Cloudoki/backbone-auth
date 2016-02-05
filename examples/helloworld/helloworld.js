@@ -18,5 +18,13 @@
 
   auth.set(authorizations);
 
-  new GreetingView().render();
+  var view = new GreetingView();
+
+  view.render();
+  // revoke permissions after one second
+  setTimeout(function() {
+    console.log('!!');
+    auth.set([]);
+    view.render();
+  }, 2000)
 })(Backbone, Mustache, Auth);
